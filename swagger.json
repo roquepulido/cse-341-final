@@ -1,0 +1,460 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Final Project CSE-341 Optica-AL API",
+    "version": "0.0.1",
+    "description": "API documentation"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Version"
+        ],
+        "summary": "Get API version",
+        "description": "Returns the current version of the API",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/swagger/api-docs": {
+      "get": {
+        "tags": [
+          "Swagger-UI"
+        ],
+        "summary": "Swagger UI",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users",
+        "description": "Returns a list of all users",
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user",
+        "description": "Creates a new user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User object to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "422": {
+            "description": "Validation error"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by ID",
+        "description": "Returns a user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update an existing user",
+        "description": "Updates an existing user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User object to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "422": {
+            "description": "Validation error"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete a user",
+        "description": "Deletes a user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "422": {
+            "description": "Validation error"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/products/": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get all products",
+        "description": "Returns a list of all products",
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Create a new product",
+        "description": "Creates a new product with the provided data",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Product data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product created",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get product by ID",
+        "description": "Returns a product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update a product",
+        "description": "Updates an existing product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Product data to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product updated",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete a product",
+        "description": "Deletes a product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Product deleted"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "oauthId": {
+          "type": "string",
+          "example": "oauth-provider-id"
+        },
+        "email": {
+          "type": "string",
+          "example": "user@email.com"
+        },
+        "name": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "profilePicture": {
+          "type": "string",
+          "example": "https://example.com/profile.jpg"
+        },
+        "type": {
+          "type": "string",
+          "example": "user"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Ray-Ban Wayfarer"
+        },
+        "brand": {
+          "type": "string",
+          "example": "Ray-Ban"
+        },
+        "price": {
+          "type": "number",
+          "example": 120.5
+        },
+        "type": {
+          "type": "string",
+          "example": "eyeglasses"
+        },
+        "description": {
+          "type": "string",
+          "example": "Classic eyeglasses frame."
+        },
+        "stock": {
+          "type": "number",
+          "example": 10
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "frameMaterial": {
+              "type": "string",
+              "example": "acetate"
+            },
+            "frameColor": {
+              "type": "string",
+              "example": "black"
+            },
+            "lensMaterial": {
+              "type": "string",
+              "example": "plastic"
+            },
+            "lensColor": {
+              "type": "string",
+              "example": "clear"
+            },
+            "gender": {
+              "type": "string",
+              "example": "unisex"
+            },
+            "shape": {
+              "type": "string",
+              "example": "rectangle"
+            },
+            "lensType": {
+              "type": "string",
+              "example": "monthly"
+            },
+            "power": {
+              "type": "string",
+              "example": "-1.25"
+            },
+            "baseCurve": {
+              "type": "string",
+              "example": "8.6"
+            },
+            "diameter": {
+              "type": "string",
+              "example": "14.2"
+            },
+            "material": {
+              "type": "string",
+              "example": "hydrogel"
+            }
+          }
+        }
+      }
+    }
+  }
+}
