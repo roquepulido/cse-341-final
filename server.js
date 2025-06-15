@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-export const version = "0.0.1";
+export const version = "0.0.2";
 
 app.use(express.json());
 
