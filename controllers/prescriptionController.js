@@ -1,4 +1,4 @@
-import Prescription from "../models/prescription.js";
+import Prescription from "../models/Prescription.js";
 import { HTTP_STATUS } from "../utils/const.js";
 
 const prescriptionController = {

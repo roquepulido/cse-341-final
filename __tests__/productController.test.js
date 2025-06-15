@@ -1,9 +1,9 @@
 import productController from "../controllers/productController.js";
-import Product from "../models/product.js";
+import Product from "../models/Product.js";
 import { HTTP_STATUS } from "../utils/const.js";
 import { jest } from "@jest/globals";
 
-jest.mock("../models/product.js");
+jest.mock("../models/Product.js");
 
 describe("productController", () => {
   let req, res;

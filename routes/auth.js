@@ -3,7 +3,7 @@ import passport from "passport";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { HTTP_STATUS } from "../utils/const.js";
-import User from "../models/user.js";
+import User from "../models/User.js";
 dotenv.config();
 
 const router = express.Router();

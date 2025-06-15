@@ -1,9 +1,9 @@
 import userController from "../controllers/userController.js";
-import User from "../models/user.js";
+import User from "../models/User.js";
 import { HTTP_STATUS } from "../utils/const.js";
 import { jest } from "@jest/globals";
 
-jest.mock("../models/user.js");
+jest.mock("../models/User.js");
 
 describe("userController", () => {
   let req, res;

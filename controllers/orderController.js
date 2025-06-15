@@ -1,4 +1,4 @@
-import Order from "../models/order.js";
+import Order from "../models/Order.js";
 import { HTTP_STATUS } from "../utils/const.js";
 
 const orderController = {

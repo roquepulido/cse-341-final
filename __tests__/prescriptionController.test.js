@@ -1,9 +1,9 @@
 import prescriptionController from "../controllers/prescriptionController.js";
-import Prescription from "../models/prescription.js";
+import Prescription from "../models/Prescription.js";
 import { HTTP_STATUS } from "../utils/const.js";
 import { jest } from "@jest/globals";
 
-jest.mock("../models/prescription.js");
+jest.mock("../models/Prescription.js");
 
 describe("prescriptionController", () => {
   let req, res;
