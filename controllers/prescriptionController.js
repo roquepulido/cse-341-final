@@ -92,7 +92,7 @@ const prescriptionController = {
       body: req.body,
     });
     try {
-      const prescription = await Prescription.findOneAndDelete({ _id: req.params.id, user: req.user.id });
+      const prescription = await Prescription.findOneAndDelete({ _id: req.params.id });
       if (!prescription) {
         return res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Prescription not found" });
       }

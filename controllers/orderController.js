@@ -92,7 +92,7 @@ const orderController = {
       body: req.body,
     });
     try {
-      const order = await Order.findOneAndDelete({ _id: req.params.id, user: req.user.id });
+      const order = await Order.findOneAndDelete({ _id: req.params.id});
       if (!order) {
         return res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Order not found" });
       }
