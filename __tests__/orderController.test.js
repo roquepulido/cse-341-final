@@ -1,5 +1,5 @@
 import orderController from "../controllers/orderController.js";
-import Order from "../models/Order.js";
+import Order from "../models/order.js";
 import { HTTP_STATUS } from "../utils/const.js";
 import { jest } from "@jest/globals";
 

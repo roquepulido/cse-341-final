@@ -1,5 +1,5 @@
 import prescriptionController from "../controllers/prescriptionController.js";
-import Prescription from "../models/Prescription.js";
+import Prescription from "../models/prescription.js";
 import { HTTP_STATUS } from "../utils/const.js";
 import { jest } from "@jest/globals";
 

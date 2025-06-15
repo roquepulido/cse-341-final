@@ -1,5 +1,5 @@
 import productController from "../controllers/productController.js";
-import Product from "../models/Product.js";
+import Product from "../models/product.js";
 import { HTTP_STATUS } from "../utils/const.js";
 import { jest } from "@jest/globals";
 
