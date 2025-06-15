@@ -14,7 +14,7 @@ const doc = {
       email: "user@email.com",
       name: "John Doe",
       profilePicture: "https://example.com/profile.jpg",
-      type: "user"
+      type: "user",
     },
     Product: {
       name: "Ray-Ban Wayfarer",
@@ -31,13 +31,14 @@ const doc = {
         gender: "unisex",
         shape: "rectangle",
         lensType: "monthly", // para contact_lenses
-        power: "-1.25",      // para contact_lenses
-        baseCurve: "8.6",    // para contact_lenses
-        diameter: "14.2",    // para contact_lenses
-        material: "hydrogel" // para contact_lenses
+        power: "-1.25", // para contact_lenses
+        baseCurve: "8.6", // para contact_lenses
+        diameter: "14.2", // para contact_lenses
+        material: "hydrogel", // para contact_lenses
       },
     },
     Prescription: {
+      user: "60d21b4667d0d8992e610c84",
       sphere: -1.25,
       cylinder: -0.5,
       axis: 90,
@@ -46,16 +47,17 @@ const doc = {
       base: "up",
       notes: "Patient requires progressive lenses.",
       dateIssued: "2024-05-01",
-      expirationDate: "2025-05-01"
+      expirationDate: "2025-05-01",
     },
     Order: {
+      user: "60d21b4667d0d8992e610c84",
       prescription: "60d21b4667d0d8992e610c85",
       product: "60d21b4967d0d8992e610c86",
       quantity: 2,
       total: 241.0,
       status: "pending",
-      orderDate: "2024-06-01"
-    }
+      orderDate: "2024-06-01",
+    },
   },
   securityDefinitions: {
     BearerAuth: {

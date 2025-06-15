@@ -12,7 +12,7 @@ const orderController = {
       body: req.body,
     });
     try {
-      const orders = await Order.find({ user: req.user.id }).populate('prescription').populate('product');
+      const orders = await Order.find().populate('prescription').populate('product');
       res.status(HTTP_STATUS.OK).json(orders);
     } catch (error) {
       res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: error.message });
@@ -29,7 +29,7 @@ const orderController = {
       body: req.body,
     });
     try {
-      const order = await Order.findOne({ _id: req.params.id, user: req.user.id }).populate('prescription').populate('product');
+      const order = await Order.findOne({ _id: req.params.id }).populate('prescription').populate('product');
       if (!order) {
         return res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Order not found" });
       }

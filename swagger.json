@@ -920,6 +920,10 @@
     "Prescription": {
       "type": "object",
       "properties": {
+        "user": {
+          "type": "string",
+          "example": "60d21b4667d0d8992e610c84"
+        },
         "sphere": {
           "type": "number",
           "example": -1.25
@@ -961,6 +965,10 @@
     "Order": {
       "type": "object",
       "properties": {
+        "user": {
+          "type": "string",
+          "example": "60d21b4667d0d8992e610c84"
+        },
         "prescription": {
           "type": "string",
           "example": "60d21b4667d0d8992e610c85"

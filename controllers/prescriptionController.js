@@ -12,7 +12,7 @@ const prescriptionController = {
       body: req.body,
     });
     try {
-      const prescriptions = await Prescription.find({ user: req.user.id });
+      const prescriptions = await Prescription.find();
       res.status(HTTP_STATUS.OK).json(prescriptions);
     } catch (error) {
       res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ message: error.message });
@@ -29,7 +29,7 @@ const prescriptionController = {
       body: req.body,
     });
     try {
-      const prescription = await Prescription.findOne({ _id: req.params.id, user: req.user.id });
+      const prescription = await Prescription.findOne({ _id: req.params.id });
       if (!prescription) {
         return res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Prescription not found" });
       }
