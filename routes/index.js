@@ -3,6 +3,7 @@ import swaggerRouter from "./swagger.js";
 import { version } from "../server.js";
 import userRouter from "./users.js";
 import productRouter from "./products.js";
+import authRouter from "./auth.js";
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.get("/", (req, res) => {
 router.use("/swagger", swaggerRouter);
 router.use("/users", userRouter);
 router.use("/products", productRouter);
+router.use("/auth", authRouter);
 
 export default router;

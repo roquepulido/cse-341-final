@@ -6,6 +6,7 @@ import {
   idValidationRules,
   validate,
 } from "../helpers/validate.js";
+import { authenticateJWT } from "../middleware/authenticateJWT.js";
 
 const router = Router();
 
@@ -68,6 +69,7 @@ router.post(
     }
   */
   "/",
+  authenticateJWT,
   productValidationRules(),
   validate,
   productController.createProduct
@@ -97,6 +99,7 @@ router.put(
     }
   */
   "/:id",
+  authenticateJWT,
   idValidationRules(),
   productUpdateValidationRules(),
   validate,
@@ -117,6 +120,7 @@ router.delete(
     }
   */
   "/:id",
+  authenticateJWT,
   idValidationRules(),
   validate,
   productController.deleteProduct

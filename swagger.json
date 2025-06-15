@@ -2,14 +2,22 @@
   "swagger": "2.0",
   "info": {
     "title": "Final Project CSE-341 Optica-AL API",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "API documentation"
   },
-  "host": "cse-341-final-22b8.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Ingrese el token JWT con el formato: Bearer {token}"
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -100,7 +108,12 @@
           "500": {
             "description": "Internal server error"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       }
     },
     "/users/{id}": {
@@ -172,12 +185,15 @@
           "500": {
             "description": "Internal server error"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Delete a user",
         "description": "Deletes a user by ID",
         "parameters": [
@@ -201,7 +217,12 @@
           "500": {
             "description": "Internal server error"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       }
     },
     "/products/": {
@@ -233,9 +254,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "summary": "Create a new product",
         "description": "Creates a new product with the provided data",
         "parameters": [
@@ -259,7 +278,12 @@
           "400": {
             "description": "Invalid input"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       }
     },
     "/products/{id}": {
@@ -325,7 +349,12 @@
           "404": {
             "description": "Product not found"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -347,6 +376,41 @@
           },
           "404": {
             "description": "Product not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/auth/github": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/github/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/failure": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }

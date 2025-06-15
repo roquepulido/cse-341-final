@@ -3,12 +3,14 @@ import router from "./routes/index.js";
 import dbConfig from "./config/db.js";
 import { HTTP_STATUS } from "./utils/const.js";
 import dotenv from "dotenv";
+import { passport } from "./config/passport.js";
+import session from "express-session";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-export const version = "0.0.2";
+export const version = "0.0.3";
 
 app.use(express.json());
 
@@ -23,7 +25,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// config of session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Init Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Routes Linking
 app.use("/", router);
 
 // Middleware to handle 404 URL errors
