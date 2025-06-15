@@ -2,13 +2,13 @@
   "swagger": "2.0",
   "info": {
     "title": "Final Project CSE-341 Optica-AL API",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "API documentation"
   },
-  "host": "localhost:3000",
+  "host": "https://cse-341-final-22b8.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "BearerAuth": {
