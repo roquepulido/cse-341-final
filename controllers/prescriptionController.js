@@ -49,7 +49,7 @@ const prescriptionController = {
       body: req.body,
     });
     try {
-      const data = { ...req.body, user: req.user.id };
+      const data = { ...req.body };
       const prescription = new Prescription(data);
       await prescription.save();
       res.status(HTTP_STATUS.CREATED).json(prescription);
@@ -69,7 +69,7 @@ const prescriptionController = {
     });
     try {
       const prescription = await Prescription.findOneAndUpdate(
-        { _id: req.params.id, user: req.user.id },
+        { _id: req.params.id },
         req.body,
         { new: true, runValidators: true }
       );
