@@ -4,6 +4,8 @@ import { version } from "../server.js";
 import userRouter from "./users.js";
 import productRouter from "./products.js";
 import authRouter from "./auth.js";
+import orderRouter from "./order.js";
+import prescriptionRouter from "./prescription.js";
 
 const router = express.Router();
 
@@ -17,5 +19,7 @@ router.use("/swagger", swaggerRouter);
 router.use("/users", userRouter);
 router.use("/products", productRouter);
 router.use("/auth", authRouter);
+router.use("/orders", orderRouter);
+router.use("/prescriptions", prescriptionRouter);
 
 export default router;

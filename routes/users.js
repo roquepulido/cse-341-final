@@ -1,12 +1,10 @@
 import { Router } from "express";
 import usersController from "../controllers/userController.js";
+import validation from "../helpers/validate.js";
 import {
-  userValidationRules,
-  userUpdateValidationRules,
-  idValidationRules,
-  validate,
-} from "../helpers/validate.js";
-import { authenticateJWT } from "../middleware/authenticateJWT.js";
+  authenticateJWT,
+  authorizeRoles,
+} from "../middleware/authenticateJWT.js";
 
 const router = Router();
 
@@ -16,6 +14,7 @@ router.get(
     #swagger.tags = ['Users']
     #swagger.summary = 'Get all users'
     #swagger.description = 'Returns a list of all users'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.responses[200] = {
       description: 'List of users',
       schema: {
@@ -25,6 +24,8 @@ router.get(
     }
     */
   "/",
+  authenticateJWT,
+  authorizeRoles("admin", "worker"),
   usersController.getAllUsers
 );
 
@@ -34,6 +35,7 @@ router.get(
     #swagger.tags = ['Users']
     #swagger.summary = 'Get user by ID'
     #swagger.description = 'Returns a user by ID'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.responses[200] = {
       description: 'User found',
       schema: {
@@ -48,8 +50,10 @@ router.get(
     }
     */
   "/:id",
-  idValidationRules(),
-  validate,
+  authenticateJWT,
+  authorizeRoles("admin", "worker"),
+  validation.idValidationRules(),
+  validation.validate,
   usersController.getUserById
 );
 
@@ -58,6 +62,7 @@ router.post(
     #swagger.tags = ['Users']
     #swagger.summary = 'Create a new user'
     #swagger.description = 'Creates a new user'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.parameters['body'] = {
       in: 'body',
       description: 'User object to be created',
@@ -84,8 +89,9 @@ router.post(
     */
   "/",
   authenticateJWT,
-  userValidationRules(),
-  validate,
+  authorizeRoles("admin", "worker"),
+  validation.userValidationRules(),
+  validation.validate,
   usersController.createUser
 );
 router.put(
@@ -93,6 +99,7 @@ router.put(
     #swagger.tags = ['Users']
     #swagger.summary = 'Update an existing user'
     #swagger.description = 'Updates an existing user'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.parameters['body'] = {
       in: 'body',
       description: 'User object to be updated',
@@ -119,9 +126,10 @@ router.put(
     */
   "/:id",
   authenticateJWT,
-  idValidationRules(),
-  userUpdateValidationRules(),
-  validate,
+  authorizeRoles("admin", "worker"),
+  validation.idValidationRules(),
+  validation.userUpdateValidationRules(),
+  validation.validate,
   usersController.updateUser
 );
 router.delete(
@@ -129,6 +137,7 @@ router.delete(
     #swagger.tags = ['Users']
     #swagger.summary = 'Delete a user'
     #swagger.description = 'Deletes a user by ID'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.responses[204] = {
       description: 'User deleted successfully'
     }
@@ -144,8 +153,9 @@ router.delete(
     */
   "/:id",
   authenticateJWT,
-  idValidationRules(),
-  validate,
+  authorizeRoles("admin", "worker"),
+  validation.idValidationRules(),
+  validation.validate,
   usersController.deleteUser
 );
 

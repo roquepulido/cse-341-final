@@ -1,12 +1,10 @@
 import { Router } from "express";
 import productController from "../controllers/productController.js";
+import validation from "../helpers/validate.js";
 import {
-  productValidationRules,
-  productUpdateValidationRules,
-  idValidationRules,
-  validate,
-} from "../helpers/validate.js";
-import { authenticateJWT } from "../middleware/authenticateJWT.js";
+  authenticateJWT,
+  authorizeRoles,
+} from "../middleware/authenticateJWT.js";
 
 const router = Router();
 
@@ -43,8 +41,8 @@ router.get(
     }
   */
   "/:id",
-  idValidationRules(),
-  validate,
+  validation.idValidationRules(),
+  validation.validate,
   productController.getProductById
 );
 
@@ -54,6 +52,7 @@ router.post(
     #swagger.tags = ['Products']
     #swagger.summary = 'Create a new product'
     #swagger.description = 'Creates a new product with the provided data'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.parameters['body'] = {
       in: 'body',
       description: 'Product data',
@@ -70,8 +69,9 @@ router.post(
   */
   "/",
   authenticateJWT,
-  productValidationRules(),
-  validate,
+  authorizeRoles("admin", "worker"),
+  validation.productValidationRules(),
+  validation.validate,
   productController.createProduct
 );
 
@@ -81,6 +81,7 @@ router.put(
     #swagger.tags = ['Products']
     #swagger.summary = 'Update a product'
     #swagger.description = 'Updates an existing product by ID'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.parameters['body'] = {
       in: 'body',
       description: 'Product data to update',
@@ -100,9 +101,10 @@ router.put(
   */
   "/:id",
   authenticateJWT,
-  idValidationRules(),
-  productUpdateValidationRules(),
-  validate,
+  authorizeRoles("admin", "worker"),
+  validation.idValidationRules(),
+  validation.productUpdateValidationRules(),
+  validation.validate,
   productController.updateProduct
 );
 
@@ -112,6 +114,7 @@ router.delete(
     #swagger.tags = ['Products']
     #swagger.summary = 'Delete a product'
     #swagger.description = 'Deletes a product by ID'
+    #swagger.security = [{"BearerAuth": []}]
     #swagger.responses[204] = {
       description: 'Product deleted'
     },
@@ -121,8 +124,9 @@ router.delete(
   */
   "/:id",
   authenticateJWT,
-  idValidationRules(),
-  validate,
+  authorizeRoles("admin", "worker"),
+  validation.idValidationRules(),
+  validation.validate,
   productController.deleteProduct
 );
 

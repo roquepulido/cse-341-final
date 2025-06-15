@@ -37,6 +37,25 @@ const doc = {
         material: "hydrogel" // para contact_lenses
       },
     },
+    Prescription: {
+      sphere: -1.25,
+      cylinder: -0.5,
+      axis: 90,
+      addition: 2.0,
+      prism: 0.5,
+      base: "up",
+      notes: "Patient requires progressive lenses.",
+      dateIssued: "2024-05-01",
+      expirationDate: "2025-05-01"
+    },
+    Order: {
+      prescription: "60d21b4667d0d8992e610c85",
+      product: "60d21b4967d0d8992e610c86",
+      quantity: 2,
+      total: 241.0,
+      status: "pending",
+      orderDate: "2024-06-01"
+    }
   },
   securityDefinitions: {
     BearerAuth: {
