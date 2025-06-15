@@ -5,7 +5,7 @@
     "version": "0.0.2",
     "description": "API documentation"
   },
-  "host": "cse-341-final-22b8.onrender.com/",
+  "host": "cse-341-final-22b8.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
