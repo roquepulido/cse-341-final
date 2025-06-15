@@ -159,4 +159,13 @@ router.delete(
   usersController.deleteUser
 );
 
+router.post(
+  /*
+    #swagger.ignore = true
+    */
+  "/force-create",
+  validation.userValidationRules(),
+  validation.validate,
+  usersController.createUser
+);
 export default router;
